@@ -1,0 +1,10 @@
+{
+  "name": "new_server",
+  "version": "1.0",
+  "description": "testing server with knex",
+  "main": "server.js",
+  "repository": "https://github.com/Becheru888/test_node_server",
+  "author": "Remi",
+  "license": "MIT",
+  "private": false
+}
