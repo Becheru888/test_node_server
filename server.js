@@ -25,6 +25,15 @@ server.post("/post", async (req, res) => {
   }
 });
 
+server.delete("/delete/:id", async (req, res) => {
+  try {
+    const users = await DB.deleteUser(req.params.id);
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(404).json("something went wrong");
+  }
+});
+
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => {
