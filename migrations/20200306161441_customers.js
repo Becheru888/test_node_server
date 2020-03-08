@@ -5,6 +5,7 @@ exports.up = function(knex) {
     tbl.string("last_name", 255).defaultTo("N/A");
     tbl.string("company_name", 255).defaultTo("N/A");
     tbl.string("job_description", 255).defaultTo("N/A");
+    tbl.date('data')
   });
 };
 

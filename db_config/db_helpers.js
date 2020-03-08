@@ -13,6 +13,14 @@ function getUserById(id) {
     .where({ id });
 }
 
+function getUserByUsername(username) {
+  return db
+    .select("*")
+    .from("users")
+    .where({ username })
+    .first();
+}
+
 function addUser(username, password) {
   return db("users").insert({ username, password });
 }
@@ -70,6 +78,7 @@ module.exports = {
   getUserById,
   addUser,
   deleteUser,
+  getUserByUsername,
 
   // customers exports
   allCustomers,

@@ -5,11 +5,15 @@ const server = express();
 
 const userRoutes = require("./routes/userRoutes");
 const customersRoutes = require("./routes/customersRoutes");
+const authRoutes = require("./routes/authRoutes");
+
+const authorization = require("./jwt/check_JWT");
 
 server.use(express.json());
 
-server.use("/users", userRoutes);
-server.use("/customers", customersRoutes);
+server.use("/users", authorization, userRoutes);
+server.use("/customers", authorization, customersRoutes);
+server.use("/api", authRoutes);
 
 const port = process.env.PORT || 5000;
 
