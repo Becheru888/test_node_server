@@ -1,14 +1,16 @@
-exports.up = function(knex) {
-  return knex.schema.createTable("customers", tbl => {
+exports.up = function (knex) {
+  return knex.schema.createTable("customers", (tbl) => {
     tbl.increments("id");
     tbl.string("first_name", 255).defaultTo("N/A");
     tbl.string("last_name", 255).defaultTo("N/A");
     tbl.string("company_name", 255).defaultTo("N/A");
+    tbl.string("email", 255).defaultTo("N/A");
+    tbl.string("tel_no", 255).defaultTo("N/A");
     tbl.string("job_description", 255).defaultTo("N/A");
-    tbl.date('data')
+    tbl.timestamp("created_at", { precision: 6 }).defaultTo(knex.fn.now(6));
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTableIfExists("customers");
 };

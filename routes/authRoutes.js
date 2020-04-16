@@ -6,14 +6,14 @@ const DB = require("../db_config/db_helpers");
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  let { username, password } = req.body;
+  let { username, password, email } = req.body;
   const hash = bcrypt.hashSync(password, 12);
   password = hash;
   try {
-    const users = await DB.addUser(username, password);
+    const users = await DB.addUser(username, password, email);
     res.status(200).json(users);
   } catch (err) {
-    res.status(404).json("something went wrong");
+    res.status(404).json({ message: err });
   }
 });
 
@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
       res.status(401).json({ message: "Invalid credentials!" });
     }
   } catch (err) {
-    res.status(401).json({ message: "Unauthorised user" });
+    res.status(401).json({ message: err });
   }
 });
 

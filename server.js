@@ -2,14 +2,16 @@ require("dotenv").config();
 
 const express = require("express");
 const server = express();
+const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 const customersRoutes = require("./routes/customersRoutes");
 const authRoutes = require("./routes/authRoutes");
 
-const authorization = require("./jwt/check_JWT");
+const authorization = require("./jwt/check_JWT").authorization;
 
 server.use(express.json());
+server.use(cors());
 
 server.use("/users", authorization, userRoutes);
 server.use("/customers", authorization, customersRoutes);
