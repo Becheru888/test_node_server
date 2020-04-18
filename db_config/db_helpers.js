@@ -13,8 +13,16 @@ function getUserById(id) {
     .where({ id });
 }
 
-function addUser(username, password) {
-  return db("users").insert({ username, password });
+function getUserByUsername(username) {
+  return db
+    .select("*")
+    .from("users")
+    .where({ username })
+    .first();
+}
+
+function addUser(username, password, email) {
+  return db("users").insert({ username, password, email });
 }
 
 function deleteUser(id) {
@@ -36,11 +44,20 @@ function getCustomerById(id) {
     .where({ id });
 }
 
-function addCustomer(first_name, last_name, company_name, job_description) {
+function addCustomer(
+  first_name,
+  last_name,
+  company_name,
+  email,
+  tel_no,
+  job_description
+) {
   return db("customers").insert({
     first_name,
     last_name,
     company_name,
+    email,
+    tel_no,
     job_description
   });
 }
@@ -50,11 +67,20 @@ function updatedCustomer(
   first_name,
   last_name,
   company_name,
+  email,
+  tel_no,
   job_description
 ) {
   return db("customers")
     .where({ id })
-    .update({ first_name, last_name, company_name, job_description });
+    .update({
+      first_name,
+      last_name,
+      company_name,
+      email,
+      tel_no,
+      job_description
+    });
 }
 
 function deleteCustomer(id) {
@@ -70,6 +96,7 @@ module.exports = {
   getUserById,
   addUser,
   deleteUser,
+  getUserByUsername,
 
   // customers exports
   allCustomers,

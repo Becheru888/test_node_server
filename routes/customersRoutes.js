@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const DB = require("../db_config/db_helpers");
@@ -31,9 +30,23 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
-  const { first_name, last_name, company_name, job_description } = req.body;
+  const {
+    first_name,
+    last_name,
+    company_name,
+    email,
+    tel_no,
+    job_description
+  } = req.body;
   try {
-    await DB.addCustomer(first_name, last_name, company_name, job_description);
+    await DB.addCustomer(
+      first_name,
+      last_name,
+      company_name,
+      email,
+      tel_no,
+      job_description
+    );
     const updatedList = await DB.allCustomers();
     res.status(200).json(updatedList);
   } catch (err) {
@@ -43,7 +56,14 @@ router.post("/add", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { first_name, last_name, company_name, job_description } = req.body;
+  const {
+    first_name,
+    last_name,
+    company_name,
+    email,
+    tel_no,
+    job_description
+  } = req.body;
   try {
     const customer = await DB.getCustomerById(id);
     if (customer.length <= 0) {
@@ -52,10 +72,11 @@ router.put("/:id", async (req, res) => {
       });
     } else {
       await DB.updatedCustomer(
-        id,
         first_name,
         last_name,
         company_name,
+        email,
+        tel_no,
         job_description
       );
       res.status(200).json({

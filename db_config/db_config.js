@@ -1,14 +1,9 @@
+require("dotenv").config();
 const knex = require("knex");
 
-const config = {
-  client: "mysql",
-  connection: {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: "customers"
-  }
-};
+const environment = process.env.ENVIRONMENT || "development";
+
+const config = require("../knexfile")[environment];
 
 const db = knex(config);
 
