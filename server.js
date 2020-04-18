@@ -17,6 +17,10 @@ server.use("/users", authorization, userRoutes);
 server.use("/customers", authorization, customersRoutes);
 server.use("/api", authRoutes);
 
+server.use("/", (req, res) => {
+  res.json("Welcome to the cms api!");
+});
+
 const port = process.env.PORT || 5000;
 
 server.listen(port, () => {
