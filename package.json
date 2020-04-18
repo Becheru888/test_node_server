@@ -22,7 +22,5 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.2"
   },
-  "optionalDependencies": {
-    "fsevents": "*"
-  }
+  "optionalDependencies": {}
 }
