@@ -2,10 +2,10 @@
   "name": "new_server",
   "version": "1.0",
   "description": "testing server with knex",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": "https://github.com/Becheru888/test_node_server",
   "author": "Remi",
