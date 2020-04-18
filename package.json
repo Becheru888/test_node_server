@@ -21,5 +21,8 @@
     "minimist": "^1.2.5",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.2"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }
