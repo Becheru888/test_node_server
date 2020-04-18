@@ -17,5 +17,9 @@
     "minimist": "^1.2.5",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "server": "nodemon index.js",
+    "start": "node index.js"
   }
 }
