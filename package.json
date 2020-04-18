@@ -3,6 +3,10 @@
   "version": "1.0",
   "description": "testing server with knex",
   "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
   "repository": "https://github.com/Becheru888/test_node_server",
   "author": "Remi",
   "license": "MIT",
@@ -17,9 +21,5 @@
     "minimist": "^1.2.5",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.2"
-  },
-  "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
   }
 }
