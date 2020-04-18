@@ -19,7 +19,7 @@
     "nodemon": "^2.0.2"
   },
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "nodemon server.js",
     "start": "node server.js"
   }
 }
