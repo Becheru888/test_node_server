@@ -1,5 +1,4 @@
 require("dotenv").config();
-const port = process.env.PORT;
 const express = require("express");
 const server = express();
 const cors = require("cors");
@@ -20,6 +19,8 @@ server.use("/api", authRoutes);
 server.use("/", (req, res) => {
   res.json("Welcome to the cms api!");
 });
+
+const port = process.env.PORT;
 
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
