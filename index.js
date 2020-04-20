@@ -16,7 +16,7 @@ server.use("/users", authorization, userRoutes);
 server.use("/customers", authorization, customersRoutes);
 server.use("/api", authRoutes);
 
-server.use("/", (req, res) => {
+server.get("/", (req, res) => {
   res.json("Welcome to the cms api!");
 });
 
