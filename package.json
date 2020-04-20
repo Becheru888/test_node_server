@@ -4,8 +4,8 @@
   "description": "testing server with knex",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "repository": "https://github.com/Becheru888/test_node_server",
   "author": "Remi",
