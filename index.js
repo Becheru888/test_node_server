@@ -12,7 +12,7 @@ const authorization = require("./jwt/check_JWT").authorization;
 server.use(express.json());
 server.use(cors());
 
-server.use("/users", userRoutes);
+server.use("/users", authorization, userRoutes);
 server.use("/customers", authorization, customersRoutes);
 server.use("/", authRoutes);
 
