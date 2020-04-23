@@ -8,6 +8,7 @@ exports.up = function (knex) {
     tbl.string("tel_no", 255).defaultTo("N/A");
     tbl.string("job_description", 255).defaultTo("N/A");
     tbl.timestamp("created_at", { precision: 6 }).defaultTo(knex.fn.now(6));
+    tbl.string("address", 500).defaultTo("N/A");
   });
 };
 
