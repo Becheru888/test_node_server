@@ -7,18 +7,11 @@ function allUsers() {
 }
 
 function getUserById(id) {
-  return db
-    .select("*")
-    .from("users")
-    .where({ id });
+  return db.select("*").from("users").where({ id });
 }
 
 function getUserByUsername(username) {
-  return db
-    .select("*")
-    .from("users")
-    .where({ username })
-    .first();
+  return db.select("*").from("users").where({ username }).first();
 }
 
 function addUser(username, password, email) {
@@ -26,9 +19,7 @@ function addUser(username, password, email) {
 }
 
 function deleteUser(id) {
-  return db("users")
-    .where({ id })
-    .del();
+  return db("users").where({ id }).del();
 }
 
 // Customers queries
@@ -38,10 +29,7 @@ function allCustomers() {
 }
 
 function getCustomerById(id) {
-  return db
-    .select("*")
-    .from("customers")
-    .where({ id });
+  return db.select("*").from("customers").where({ id });
 }
 
 function addCustomer(
@@ -58,7 +46,7 @@ function addCustomer(
     company_name,
     email,
     tel_no,
-    job_description
+    job_description,
   });
 }
 
@@ -71,22 +59,38 @@ function updatedCustomer(
   tel_no,
   job_description
 ) {
-  return db("customers")
-    .where({ id })
-    .update({
-      first_name,
-      last_name,
-      company_name,
-      email,
-      tel_no,
-      job_description
-    });
+  return db("customers").where({ id }).update({
+    first_name,
+    last_name,
+    company_name,
+    email,
+    tel_no,
+    job_description,
+  });
 }
 
 function deleteCustomer(id) {
-  return db("customers")
-    .where({ id })
-    .del();
+  return db("customers").where({ id }).del();
+}
+
+// Customers LOGS queries
+
+// function getAllLogs(id) {
+//   return db("customer_log")
+//     .select("*")
+//     .where("customer_id", "=", `${id}`)
+//     .join("users", "customer_log.user_id", "=", "users.id")
+//     .select("users.first_name", "users.last_name");
+// }
+
+function getAllLogs(id) {
+  return db("customer_log")
+    .select("*")
+    .where("customer_log.customer_id", "=", `${id}`);
+}
+
+function insertLog(customer_id, user_id, content) {
+  return db("customer_log").insert({ customer_id, user_id, content });
 }
 
 module.exports = {
@@ -103,5 +107,9 @@ module.exports = {
   getCustomerById,
   addCustomer,
   updatedCustomer,
-  deleteCustomer
+  deleteCustomer,
+
+  // customers logs
+  getAllLogs,
+  insertLog,
 };
