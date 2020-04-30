@@ -75,8 +75,18 @@ function deleteCustomer(id) {
 
 // Customers LOGS queries
 
+// function getAllLogs(id) {
+//   return db("customer_log")
+//     .select("*")
+//     .where("customer_id", "=", `${id}`)
+//     .join("users", "customer_log.user_id", "=", "users.id")
+//     .select("users.first_name", "users.last_name");
+// }
+
 function getAllLogs(id) {
-  return db("customer_log").select("*").where("customer_id", "=", `${id}`);
+  return db("customer_log")
+    .select("*")
+    .where("customer_log.customer_id", "=", `${id}`);
 }
 
 function insertLog(customer_id, user_id, content) {

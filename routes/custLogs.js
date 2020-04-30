@@ -5,18 +5,17 @@ const DB = require("../db_config/db_helpers");
 
 // get all logs which belongs to cust_id
 
-router.get("/:cust_id", async (req, res) => {
-  const { cust_id } = req.params;
+router.get("/customer/:id", async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const logs = await DB.getAllLogs(cust_id);
+    const logs = await DB.getAllLogs(id);
     if (logs.length <= 0) {
-      res
-        .status(404)
-        .json({ message: `Logs for id ${cust_id} does not exist!` });
+      res.status(404).json({ message: `Logs for id ${id} does not exist!` });
     }
     res.status(200).json(logs);
   } catch (err) {
-    res.status(404).json("something went wrong");
+    res.status(404).json({ message: err });
   }
 });
 
