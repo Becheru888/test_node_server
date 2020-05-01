@@ -24,7 +24,7 @@ router.post("/user/:user_id/customer/:cust_id", async (req, res) => {
   const { content } = req.body;
   try {
     await DB.insertLog(cust_id, user_id, content);
-    const updatedLogs = await DB.getAllLogs(user_id);
+    const updatedLogs = await DB.getAllLogs(cust_id);
     res.status(201).json(updatedLogs);
   } catch (err) {
     res.status(404).json({ message: err });

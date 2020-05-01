@@ -86,6 +86,7 @@ function deleteCustomer(id) {
 function getAllLogs(id) {
   return db("customer_log")
     .select("*")
+    .from("customer_log")
     .where("customer_log.customer_id", "=", `${id}`);
 }
 
