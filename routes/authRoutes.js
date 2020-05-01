@@ -25,7 +25,7 @@ router.post("/login", async (req, res) => {
       const token = generateJwt(user);
       res
         .status(200)
-        .json({ message: `Welcome ${user.username}`, token, user });
+        .json({ message: `Welcome ${user.username}`, token, user_id: user.id });
     } else {
       res.status(401).json({ message: "Invalid credentials!" });
     }
