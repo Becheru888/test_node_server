@@ -15,7 +15,7 @@ server.use(cors());
 
 server.use("/users", authorization, userRoutes);
 server.use("/customers", authorization, customersRoutes);
-server.use("/", authRoutes);
+server.use("/auth", authRoutes);
 server.use("/logs", logsRoutes);
 
 server.get("/", (req, res) => {
