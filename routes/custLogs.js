@@ -10,7 +10,7 @@ router.get("/customer/:id", async (req, res) => {
   try {
     const logs = await DB.getAllLogs(id);
     if (logs.length <= 0) {
-      res.status(404).json({ message: `Logs for id ${id} does not exist!` });
+      res.status(200).json({ message: `Logs for id ${id} does not exist!` });
     } else {
       res.status(200).json(logs);
     }
