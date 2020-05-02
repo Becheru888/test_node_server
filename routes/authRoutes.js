@@ -27,10 +27,10 @@ router.post("/login", async (req, res) => {
         .status(200)
         .json({ message: `Welcome ${user.username}`, token, user_id: user.id });
     } else {
-      res.status(401).json({ message: "Invalid credentials!" });
+      res.status(403).json({ message: "Invalid credentials!" });
     }
   } catch (err) {
-    res.status(401).json({ message: err });
+    res.status(404).json({ message: err });
   }
 });
 
