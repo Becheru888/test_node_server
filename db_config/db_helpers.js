@@ -90,8 +90,13 @@ function getAllLogs(id) {
     .where("customer_log.customer_id", "=", `${id}`);
 }
 
-function insertLog(customer_id, user_id, content) {
-  return db("customer_log").insert({ customer_id, user_id, content });
+function insertLog(customer_id, user_id, content, user_initial) {
+  return db("customer_log").insert({
+    customer_id,
+    user_id,
+    content,
+    user_initial,
+  });
 }
 
 module.exports = {

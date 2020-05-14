@@ -10,6 +10,7 @@ exports.up = function (knex) {
     tbl.integer("user_id").references("id").inTable("users").index().unsigned();
     tbl.text("content").notNullable();
     tbl.timestamps(true, true);
+    tbl.text("user_initial").notNullable();
   });
 };
 
