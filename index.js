@@ -4,9 +4,9 @@ const server = express();
 const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
-const customersRoutes = require("./routes/customersRoutes");
+const prospectRoutes = require("./routes/prospectsRoutes");
 const authRoutes = require("./routes/authRoutes");
-const logsRoutes = require("./routes/custLogs");
+const logsRoutes = require("./routes/prospectsLogs");
 
 const authorization = require("./jwt/check_JWT").authorization;
 
@@ -14,7 +14,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use("/users", authorization, userRoutes);
-server.use("/customers", authorization, customersRoutes);
+server.use("/prospects", authorization, prospectRoutes);
 server.use("/auth", authRoutes);
 server.use("/logs", logsRoutes);
 

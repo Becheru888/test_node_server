@@ -22,17 +22,17 @@ function deleteUser(id) {
   return db("users").where({ id }).del();
 }
 
-// Customers queries
+// Prospects queries
 
-function allCustomers() {
-  return db.select("*").from("customers");
+function allProspects() {
+  return db.select("*").from("prospects");
 }
 
-function getCustomerById(id) {
-  return db.select("*").from("customers").where({ id });
+function getProspectById(id) {
+  return db.select("*").from("prospects").where({ id });
 }
 
-function addCustomer(
+function addProspect(
   first_name,
   last_name,
   company_name,
@@ -40,7 +40,7 @@ function addCustomer(
   tel_no,
   job_description
 ) {
-  return db("customers").insert({
+  return db("prospects").insert({
     first_name,
     last_name,
     company_name,
@@ -50,7 +50,7 @@ function addCustomer(
   });
 }
 
-function updatedCustomer(
+function updateProspect(
   id,
   first_name,
   last_name,
@@ -69,30 +69,22 @@ function updatedCustomer(
   });
 }
 
-function deleteCustomer(id) {
+function deleteProspect(id) {
   return db("customers").where({ id }).del();
 }
 
-// Customers LOGS queries
-
-// function getAllLogs(id) {
-//   return db("customer_log")
-//     .select("*")
-//     .where("customer_id", "=", `${id}`)
-//     .join("users", "customer_log.user_id", "=", "users.id")
-//     .select("users.first_name", "users.last_name");
-// }
+// LOGS HELPERS
 
 function getAllLogs(id) {
-  return db("customer_log")
+  return db("prospect_log")
     .select("*")
-    .from("customer_log")
-    .where("customer_log.customer_id", "=", `${id}`);
+    .from("prospect_log")
+    .where("prospect_log.prospect_id", "=", `${id}`);
 }
 
-function insertLog(customer_id, user_id, content, user_initial) {
-  return db("customer_log").insert({
-    customer_id,
+function insertLog(prospect_id, user_id, content, user_initial) {
+  return db("prospect_log").insert({
+    prospect_id,
     user_id,
     content,
     user_initial,
@@ -108,14 +100,14 @@ module.exports = {
   deleteUser,
   getUserByUsername,
 
-  // customers exports
-  allCustomers,
-  getCustomerById,
-  addCustomer,
-  updatedCustomer,
-  deleteCustomer,
+  // prospects exports
+  allProspects,
+  getProspectById,
+  addProspect,
+  updateProspect,
+  deleteProspect,
 
-  // customers logs
+  // prsopects logs
   getAllLogs,
   insertLog,
 };
