@@ -1,10 +1,10 @@
 exports.up = function (knex) {
-  return knex.schema.createTable("customer_log", (tbl) => {
+  return knex.schema.createTable("prospect_log", (tbl) => {
     tbl.increments();
     tbl
-      .integer("customer_id")
+      .integer("prospect_id")
       .references("id")
-      .inTable("customers")
+      .inTable("prospects")
       .index()
       .unsigned();
     tbl.integer("user_id").references("id").inTable("users").index().unsigned();
@@ -15,5 +15,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("customer_log");
+  return knex.schema.dropTableIfExists("prospect_log");
 };

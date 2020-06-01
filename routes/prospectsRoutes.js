@@ -7,8 +7,8 @@ const DB = require("../db_config/db_helpers");
 
 router.get("/", async (req, res) => {
   try {
-    const cust = await DB.allCustomers();
-    res.status(200).json(cust);
+    const prospects = await DB.allProspects();
+    res.status(200).json(prospects);
   } catch (err) {
     res.status(404).json("Something went wrong");
   }
@@ -17,13 +17,13 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const customer = await DB.getCustomerById(id);
+    const prospect = await DB.getProspectById(id);
     if (customer.length <= 0) {
       res
         .status(404)
-        .json({ message: `Customer with id of ${id} does not exist!` });
+        .json({ message: `Prospect with id of ${id} does not exist!` });
     }
-    res.status(200).json(customer);
+    res.status(200).json(prospect);
   } catch (err) {
     res.status(404).json("something went wrong");
   }
@@ -39,7 +39,7 @@ router.post("/add", async (req, res) => {
     job_description,
   } = req.body;
   try {
-    await DB.addCustomer(
+    await DB.addProspect(
       first_name,
       last_name,
       company_name,
@@ -47,14 +47,14 @@ router.post("/add", async (req, res) => {
       tel_no,
       job_description
     );
-    const updatedList = await DB.allCustomers();
+    const updatedList = await DB.allProspects();
     res.status(200).json(updatedList);
   } catch (err) {
     res.status(500).json({ message: err });
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   const { id } = req.params;
   const {
     first_name,
@@ -65,13 +65,13 @@ router.put("/:id", async (req, res) => {
     job_description,
   } = req.body;
   try {
-    const customer = await DB.getCustomerById(id);
-    if (customer.length <= 0) {
+    const prospect = await DB.getProspectById(id);
+    if (prospect.length <= 0) {
       res.status(404).json({
-        message: `Customer with the id of ${id} does not exist in the database!`,
+        message: `Prospect with the id of ${id} does not exist in the database!`,
       });
     } else {
-      await DB.updatedCustomer(
+      await DB.updateProspect(
         first_name,
         last_name,
         company_name,
@@ -80,7 +80,7 @@ router.put("/:id", async (req, res) => {
         job_description
       );
       res.status(200).json({
-        message: `Customer with the id ${id} was updated successfully!`,
+        message: `Prospect with the id ${id} was updated successfully!`,
       });
     }
   } catch (err) {
@@ -88,19 +88,19 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/remove/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const customer = await DB.getCustomerById(id);
-    if (customer.length <= 0) {
+    const propsect = await DB.getCustomerById(id);
+    if (propsect.length <= 0) {
       res
         .status(500)
-        .json({ message: `Customer with id of ${id} does not exist!` });
+        .json({ message: `Prospect with id of ${id} does not exist!` });
     } else {
-      await DB.deleteCustomer(id);
+      await DB.deleteProspect(id);
       res
         .status(200)
-        .json({ message: `The customer with the id ${id} was deleted!` });
+        .json({ message: `The prospect with the id ${id} was deleted!` });
     }
   } catch (err) {
     res.status(404).json({ message: err });

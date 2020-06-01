@@ -5,7 +5,7 @@ const DB = require("../db_config/db_helpers");
 
 // get all logs which belongs to cust_id
 
-router.get("/customer/:id", async (req, res) => {
+router.get("/prospect/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const logs = await DB.getAllLogs(id);
@@ -19,12 +19,12 @@ router.get("/customer/:id", async (req, res) => {
   }
 });
 
-router.post("/user/:user_id/customer/:cust_id", async (req, res) => {
-  const { user_id, cust_id } = req.params;
+router.post("/user/:user_id/prospect/:pros_id", async (req, res) => {
+  const { user_id, pros_id } = req.params;
   const { content, user_initial } = req.body;
   try {
-    await DB.insertLog(cust_id, user_id, content, user_initial);
-    const updatedLogs = await DB.getAllLogs(cust_id);
+    await DB.insertLog(pros_id, user_id, content, user_initial);
+    const updatedLogs = await DB.getAllLogs(pros_id);
     res.status(201).json(updatedLogs);
   } catch (err) {
     res.status(404).json({ message: err });
