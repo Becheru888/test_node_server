@@ -59,7 +59,7 @@ function updateProspect(
   tel_no,
   job_description
 ) {
-  return db("customers").where({ id }).update({
+  return db("prospects").where({ id }).update({
     first_name,
     last_name,
     company_name,
@@ -69,8 +69,9 @@ function updateProspect(
   });
 }
 
-function deleteProspect(id) {
-  return db("customers").where({ id }).del();
+async function deleteProspect(prospect_id) {
+  await deleteLog(prospect_id);
+  await db("prospects").where("id", "=", prospect_id).del();
 }
 
 // LOGS HELPERS
@@ -89,6 +90,12 @@ function insertLog(prospect_id, user_id, content, user_initial) {
     content,
     user_initial,
   });
+}
+
+function deleteLog(prospect_id) {
+  return db("prospect_log")
+    .where("prospect_log.prospect_id", "=", prospect_id)
+    .del();
 }
 
 module.exports = {
@@ -110,4 +117,5 @@ module.exports = {
   // prsopects logs
   getAllLogs,
   insertLog,
+  deleteLog,
 };

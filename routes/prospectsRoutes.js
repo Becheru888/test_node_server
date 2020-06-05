@@ -18,14 +18,14 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const prospect = await DB.getProspectById(id);
-    if (customer.length <= 0) {
+    if (prospect.length <= 0) {
       res
         .status(404)
         .json({ message: `Prospect with id of ${id} does not exist!` });
     }
     res.status(200).json(prospect);
   } catch (err) {
-    res.status(404).json("something went wrong");
+    res.status(404).json({ err }, "something went wrong");
   }
 });
 
@@ -91,13 +91,13 @@ router.put("/update/:id", async (req, res) => {
 router.delete("/remove/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    const propsect = await DB.getCustomerById(id);
+    const propsect = await DB.getProspectById(id);
     if (propsect.length <= 0) {
       res
         .status(500)
         .json({ message: `Prospect with id of ${id} does not exist!` });
     } else {
-      await DB.deleteProspect(id);
+      DB.deleteProspect(id);
       res
         .status(200)
         .json({ message: `The prospect with the id ${id} was deleted!` });
