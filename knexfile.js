@@ -8,7 +8,7 @@ module.exports = {
       host: process.env.DB_HOST_LOCAL,
       user: process.env.DB_USER_LOCAL,
       password: process.env.DB_PASSWORD_LOCAL,
-      database: "customers",
+      database: "cms",
     },
   },
 
