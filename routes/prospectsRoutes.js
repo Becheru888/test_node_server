@@ -31,18 +31,10 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/add', async (req, res) => {
-  const {
-    first_name,
-    last_name,
-    company_name,
-    email,
-    tel_no,
-    job_description
-  } = req.body
+  const { full_name, company_name, email, tel_no, job_description } = req.body
   try {
     await DB.addProspect(
-      first_name,
-      last_name,
+      full_name,
       company_name,
       email,
       tel_no,
@@ -57,14 +49,7 @@ router.post('/add', async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
   const { id } = req.params
-  const {
-    first_name,
-    last_name,
-    company_name,
-    email,
-    tel_no,
-    job_description
-  } = req.body
+  const { full_name, company_name, email, tel_no, job_description } = req.body
   try {
     const prospect = await DB.getProspectById(id)
     if (prospect.length <= 0) {
@@ -73,8 +58,7 @@ router.put('/update/:id', async (req, res) => {
       })
     } else {
       await DB.updateProspect(
-        first_name,
-        last_name,
+        full_name,
         company_name,
         email,
         tel_no,
