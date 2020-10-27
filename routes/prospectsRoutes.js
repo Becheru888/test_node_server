@@ -10,8 +10,7 @@ const DB = require("../db_config/db_helpers");
 router.get("/", async (req, res) => {
   try {
     const prospects = await DB.allProspects();
-    const webProspects = await DB.allProspectsFromWeb();
-    res.status(200).json({ prospects, webProspects });
+    res.status(200).json({ prospects });
   } catch (err) {
     res.status(404).json("Something went wrong");
   }

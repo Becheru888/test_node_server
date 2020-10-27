@@ -40,13 +40,19 @@ function getProspectById(id) {
   return db.select("*").from("prospects").where({ id });
 }
 
-function addProspect(full_name, company_name, email, tel_no, job_description) {
+function addProspect(
+  full_name,
+  company_name,
+  email,
+  tel_no,
+  project_description
+) {
   return db("prospects").insert({
     full_name,
     company_name,
     email,
     tel_no,
-    job_description,
+    project_description,
   });
 }
 
@@ -56,14 +62,14 @@ function updateProspect(
   company_name,
   email,
   tel_no,
-  job_description
+  project_description
 ) {
   return db("prospects").where({ id }).update({
     full_name,
     company_name,
     email,
     tel_no,
-    job_description,
+    project_description,
   });
 }
 
